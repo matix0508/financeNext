@@ -1,0 +1,26 @@
+$padding: 1rem;
+
+.table {
+  background-color: $primary;
+  color: $onPrimary;
+  padding: 1rem;
+  margin: 1rem;
+  @include shadow;
+  border-radius: 1rem;
+
+  thead {
+    background-color: $secondary;
+    color: $onSecondary;
+    margin: 1rem;
+    padding: 1rem;
+
+    th {
+      border-radius: 8px;
+      padding: $padding;
+    }
+  }
+
+  td {
+    padding: $padding;
+  }
+}

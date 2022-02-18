@@ -22,6 +22,7 @@
         color: saturate($color: $onSecondary, $amount: 25);
         font-weight: bolder;
         cursor: pointer;
+        @include shadow;
         span {
             display: none;
         }
