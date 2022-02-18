@@ -1,18 +1,14 @@
-import React from "react";
-import { CatListItem } from "../../components/categories/CatListItem";
-import { Button } from "../../components/common/Button";
-import styles from "../../styles/Categories.module.scss";
+import React, { FC, useState } from "react";
+import { CatList } from "../../components/categories/CatList";
 
-export const Categories = () => {
+export const Categories: FC = () => {
+  const categories: string[] = ["Groceries", "Housing"];
+  const [active, setActive] = useState(categories[0]);
   return (
-    <div className={styles.categories}>
-      <ul className={styles.categories__list}>
-        <CatListItem>Hi</CatListItem>
-        <CatListItem>Hi</CatListItem>
-        <CatListItem>Hi</CatListItem>
-        <Button>Add Cateogry</Button>
-      </ul>
-    </div>
+    <>
+      <CatList items={categories} active={active} setActive={setActive} />
+      {active}
+    </>
   );
 };
 

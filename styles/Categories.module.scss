@@ -33,6 +33,11 @@
                 color: $onPrimary;
                 cursor: pointer;
             }
+
+            &_active {
+                background-color: saturate($secondary, 20);
+                font-weight: bold;
+            }
         }
     }
 }

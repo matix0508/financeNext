@@ -1,22 +1,33 @@
-.btn {
+.add_btn {
     background-color: $primary;
     color: $onPrimary;
     width: 80%;
     height: 4rem;
     border-radius: 1rem;
     text-align: center;
-    padding: 0.6rem;
-    margin: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.2s ease-out;
+    transition: all 0.4s ease-out;
+    
+
+    
 
     &:hover {
-        color: $onSecondary;
-        width: 85%;
-        height: 4.5rem;
+
+        
+        background-color: saturate($color: $secondary, $amount: 25);
+        color: saturate($color: $onSecondary, $amount: 25);
+        font-weight: bolder;
         cursor: pointer;
+        span {
+            display: none;
+        }
+        &::after {
+            content: "+";
+        }
     }
     
 }

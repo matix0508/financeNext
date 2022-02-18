@@ -28,7 +28,8 @@
       border-radius: 2rem;
     }
     &_active {
-      color: lighten($onPrimary, 15);
+      color: saturate($secondary, 30);
+      font-weight: bold;
     }
   }
 }
@@ -52,8 +53,8 @@
     transition: all 0.4s;
 
     &:hover {
-      background-color: darken($onSecondary, 15);
-      color: lighten($secondary, 15);
+      background-color: saturate($color: $secondary, $amount: 50);
+      color: saturate($onSecondary, 15);
       border-radius: 2rem;
     }
   }
