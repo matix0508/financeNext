@@ -1,0 +1,22 @@
+.btn {
+    background-color: $primary;
+    color: $onPrimary;
+    width: 80%;
+    height: 4rem;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 0.6rem;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+        color: $onSecondary;
+        width: 85%;
+        height: 4.5rem;
+        cursor: pointer;
+    }
+    
+}
