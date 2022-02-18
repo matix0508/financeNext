@@ -27,5 +27,6 @@ footer {
   background-color: $primary;
   color: $onPrimary;
   text-align: center;
+  @include shadow;
 }
 
