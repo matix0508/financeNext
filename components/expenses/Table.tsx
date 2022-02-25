@@ -32,7 +32,7 @@ export const Table: FC<ITable> = ({ rawData }) => {
     []
   )
 
-  const data = React.useMemo(() => rawData, [])
+  const data = React.useMemo(() => rawData, [rawData])
   const {
     getTableProps,
     getTableBodyProps,
