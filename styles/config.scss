@@ -13,3 +13,7 @@ $small: 576px;
 @mixin shadow {
     box-shadow: 0 1px 5px #000;
 }
+
+@mixin transition {
+    transition: all 0.3s ease-in;
+}

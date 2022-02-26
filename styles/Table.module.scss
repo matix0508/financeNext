@@ -23,4 +23,12 @@ $padding: 1rem;
   td {
     padding: $padding;
   }
+
+  tbody tr {
+    @include transition;
+
+    &:hover {
+      background-color: lighten($secondary, 30);
+    }
+  }
 }
