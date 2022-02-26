@@ -15,8 +15,3 @@ export default async function handler(
   });
   res.json(result);
 }
-
-// export default function handler(req, res) {
-//     const {cid} = req.query
-//     res.end(`Category: ${cid}`)
-// }

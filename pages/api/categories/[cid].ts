@@ -28,13 +28,13 @@ export default async function handler(
       res.status(200).json(updatedCategory);
       break;
     case "DELETE":
-      const deletedategory = await prisma.category.delete({
+      const deletedCategory = await prisma.category.delete({
         where: {
           id: Number(cid),
         },
       });
 
-      res.status(200).json(deletedategory);
+      res.status(200).json(deletedCategory);
       break;
       default:
         res.setHeader("Allow", ['GET', 'PUT', "DELETE"])
