@@ -20,7 +20,7 @@ model User {
 model Category {
   id      Int      @id @default(autoincrement())
   name    String
-  expense Expense?
+  expenses Expense[]
   user    User     @relation(fields: [userId], references: [id])
   userId  Int
 }

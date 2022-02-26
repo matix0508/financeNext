@@ -1,24 +1,20 @@
+import { Category } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma/db";
 
-async function getCategory(catId: number) {
-  return await prisma.category.findUnique({
-    where: {
-      id: catId,
-    },
-  });
-}
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Category | null>
 ) {
   const { cid } = req.query;
-  res.json(getCategory(parseInt(cid as string)))
+
+  const category = await prisma.category.findUnique({
+    where: {
+      id: parseInt(cid as string),
+    },
+  });
+
+  res.json(category)
   
 }
-
-// export default function handler(req, res) {
-//     const {cid} = req.query
-//     res.end(`Category: ${cid}`)
-// }

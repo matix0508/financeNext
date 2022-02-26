@@ -1,3 +1,4 @@
+import { Category } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../prisma/db";
@@ -6,12 +7,12 @@ type Data = {
 };
 
 async function getCategories() {
-  return await prisma.category.findMany();
+  return 
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Category[]>
 ) {
-  res.status(200).json(getCategories());
+  res.json(await prisma.category.findMany());
 }
