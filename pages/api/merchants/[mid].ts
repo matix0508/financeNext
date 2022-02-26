@@ -1,40 +1,40 @@
-import { Category } from "@prisma/client";
+import {  Merchant } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma/db";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Category | null>
+  res: NextApiResponse<Merchant | null>
 ) {
-  const { cid } = req.query;
+  const { mid } = req.query;
 
   switch (req.method) {
     case "GET":
-      const category = await prisma.category.findUnique({
+      const merchant = await prisma.merchant.findUnique({
         where: {
-          id: Number(cid),
+          id: Number(mid),
         },
       });
-      res.status(200).json(category);
+      res.status(200).json(merchant);
       break;
     case "PUT":
       const { name } = req.body;
-      const updatedCategory = await prisma.category.update({
-        where: { id: Number(cid) },
+      const updatedMerchant = await prisma.merchant.update({
+        where: { id: Number(mid) },
         data: {
           name: name,
         },
       });
-      res.status(200).json(updatedCategory);
+      res.status(200).json(updatedMerchant);
       break;
     case "DELETE":
-      const deletedCategory = await prisma.category.delete({
+      const deletedMerchant = await prisma.merchant.delete({
         where: {
-          id: Number(cid),
+          id: Number(mid),
         },
       });
 
-      res.status(200).json(deletedCategory);
+      res.status(200).json(deletedMerchant);
       break;
       default:
         res.setHeader("Allow", ['GET', 'PUT', "DELETE"])
