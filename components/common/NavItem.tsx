@@ -5,7 +5,7 @@ import styles from "../../styles/Nav.module.scss";
 
 function getPath(path: string) {
   if (path === "Home") return "/";
-  return path.split(" ")[0].toLowerCase();
+  return "/" + path.split(" ")[0].toLowerCase();
 }
 
 function isActive(current: string, path: string) {
