@@ -22,11 +22,11 @@ export const Form: FC<IForm> = ({ title, fields, selects, btnText, back }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({...data, userId: 1}),
+      body: JSON.stringify({ ...data, userId: 1 } ), // TODO: user for tests
     })
       .then((response) => response.json())
       .then((item) => console.log(item));
-    // router.push(back);
+    router.push(back);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
