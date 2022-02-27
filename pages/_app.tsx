@@ -6,7 +6,7 @@ import { NavItem } from "../components/common/NavItem";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <div className={styles.header}>
+      <nav className={styles.header}>
         <ul className={styles.navbar}>
           <NavItem page="Home" />
           <NavItem page="Expenses" />
@@ -15,9 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ul className={styles.logging}>
           <div className={styles.logging__btn}>Log In</div>
         </ul>
-      </div>
+      </nav>
+      <main>
+        <Component {...pageProps} />
+      </main>
 
-      <Component {...pageProps} />
       <footer>@Copywrites...</footer>
     </>
   );

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styles from "../../styles/Categories.module.scss";
 import { CatListItem } from "./CatListItem";
 import { AddButton } from "../common/AddButton";
+import { useRouter } from "next/router";
 
 interface ICatList {
   items: string[];
@@ -10,6 +11,7 @@ interface ICatList {
 }
 
 export const CatList: FC<ICatList> = ({ items, active, setActive }) => {
+  const router = useRouter();
   return (
     <div className={styles.categories}>
       <ul className={styles.categories__list}>
@@ -18,7 +20,9 @@ export const CatList: FC<ICatList> = ({ items, active, setActive }) => {
             <CatListItem active={item === active}>{item}</CatListItem>
           </div>
         ))}
-        <AddButton>Add Cateogry</AddButton>
+        <AddButton onClick={() => router.push("/categories/create")}>
+          Add Cateogry
+        </AddButton>
       </ul>
     </div>
   );

@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import styles from "../../styles/Common.module.scss";
 
-export const AddButton: FC = ({ children }) => {
+interface IAddButton {
+  onClick: ()=> void
+}
+
+export const AddButton: FC<IAddButton> = ({ children, onClick }) => {
   return (
-    <div className={styles.add_btn}>
+    <div onClick={onClick} className={styles.add_btn}>
       <span>{children}</span>
     </div>
   );
