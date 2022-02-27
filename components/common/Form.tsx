@@ -22,7 +22,7 @@ export const Form: FC<IForm> = ({ title, fields, selects, btnText, back }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({...data, userId: 1}),
     })
       .then((response) => response.json())
       .then((item) => console.log(item));
