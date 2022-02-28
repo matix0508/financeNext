@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import styles from "../../styles/Categories.module.scss";
+import styles from "../../styles/Categories/Categories.module.scss";
 
 interface ICatListItem {
   active: boolean;

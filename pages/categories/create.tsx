@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Form } from "../../components/common/Form";
 import { IField } from "../../types/IField";
 import { ISelect } from "../../types/ISelect";
-import styles from '../../styles/Categories.module.scss';
+import styles from '../../styles/Categories/Categories.module.scss';
 
 
 const Create:FC = () => {

@@ -1,12 +1,12 @@
 .categories {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 2fr 3fr;
 
   &__list {
     background-color: $secondary;
     color: $onSecondary;
     border-radius: 1rem;
-    margin: 1rem;
+    margin: 3rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
