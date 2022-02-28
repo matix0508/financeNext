@@ -1,8 +1,8 @@
 export interface IExpense {
     name: string,
-    category: string,
+    category: string | undefined,
     cost: number,
     description: string,
-    merchant: string,
-    date: string
+    merchant: string | undefined,
+    date: Date
 }
