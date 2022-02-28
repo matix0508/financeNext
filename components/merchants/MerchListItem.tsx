@@ -1,12 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "../../styles/ItemsList.module.scss";
 
-interface ICatListItem {
+interface IMerchListItem {
   active: boolean;
   onClick: () => void;
 }
 
-export const CatListItem: FC<ICatListItem> = ({ children, active, onClick }) => {
+export const MerchListItem: FC<IMerchListItem> = ({ children, active, onClick }) => {
   const activeStr = ` ${styles.itemsList__item__label_active}`;
   let styleStr = styles.itemsList__item__label;
   if (active) {

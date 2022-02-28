@@ -33,7 +33,7 @@ export const Form: FC<IForm> = ({
       setValue(item.label, item.default);
     });
     console.log(defaults);
-  });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

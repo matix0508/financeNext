@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <NavItem page="Home" />
           <NavItem page="Expenses" />
           <NavItem page="Categories" />
+          <NavItem page="Merchants" />
         </ul>
         <ul className={styles.logging}>
           <div className={styles.logging__btn}>Log In</div>

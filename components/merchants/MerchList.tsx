@@ -1,20 +1,20 @@
 import React, { FC } from "react";
 import styles from "../../styles/ItemsList.module.scss";
-import { CatListItem } from "./CatListItem";
+import { MerchListItem } from "./MerchListItem";
 import { AddButton } from "../common/AddButton";
 import { useRouter } from "next/router";
-import { Category } from "@prisma/client";
+import { Merchant } from "@prisma/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-interface ICatList {
-  items: Category[];
-  active: Category | undefined;
-  setActive: (item: Category) => void;
+interface IMerchList {
+  items: Merchant[];
+  active: Merchant | undefined;
+  setActive: (item: Merchant) => void;
   onChange: () => void;
 }
 
-export const CatList: FC<ICatList> = ({
+export const MerchList: FC<IMerchList> = ({
   items,
   active,
   setActive,
@@ -22,8 +22,8 @@ export const CatList: FC<ICatList> = ({
 }) => {
   const router = useRouter();
 
-  const handleDelete = async (category: Category) => {
-    const result = await fetch(`/api/categories/${category.id}`, {
+  const handleDelete = async (merchant: Merchant) => {
+    const result = await fetch(`/api/merchants/${merchant.id}`, {
       method: "DELETE",
     });
     console.log(await result.json());
@@ -37,9 +37,9 @@ export const CatList: FC<ICatList> = ({
     <ul className={styles.itemsList}>
       {items.map((item, i) => (
         <div key={i} className={styles.itemsList__item}>
-          <CatListItem onClick={() => setActive(item)} active={item === active}>
+          <MerchListItem onClick={() => setActive(item)} active={item === active}>
             {item.name}
-          </CatListItem>
+          </MerchListItem>
           <FontAwesomeIcon
             className={styles.itemsList__item__trash}
             onClick={() => handleDelete(item)}
@@ -47,8 +47,8 @@ export const CatList: FC<ICatList> = ({
           />
         </div>
       ))}
-      <AddButton onClick={() => router.push("/categories/create")}>
-        Add Cateogry
+      <AddButton onClick={() => router.push("/merchants/create")}>
+        Add Merchant
       </AddButton>
     </ul>
   );

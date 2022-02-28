@@ -6,10 +6,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Merchant>
 ) {
-  const { name } = JSON.parse(req.body);
+  const { name, userId } = req.body;
   const result = await prisma.merchant.create({
     data: {
       name: name,
+      user: {connect: {id: userId}}
     },
   });
   res.json(result);
