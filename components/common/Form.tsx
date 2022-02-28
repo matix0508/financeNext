@@ -4,6 +4,8 @@ import styles from "../../styles/Form.module.scss";
 import { IField } from "../../types/IField";
 import { ISelect } from "../../types/ISelect";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { FormSelectField } from "./FormSelectField";
+import { FormField } from "./FormField";
 
 interface IForm {
   title: string;
@@ -37,27 +39,10 @@ export const Form: FC<IForm> = ({
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.form__title}>{title}</div>
       {fields.map((f, i) => (
-        <div key={i} className={styles.form__item}>
-          <label>{f.label}</label>
-          <input
-            type={f.inputType}
-            placeholder={f.placeholder}
-            autoFocus={f.autofocus}
-            {...register(f.label, { required: true })}
-          />
-        </div>
+        <FormField key={i} item={f} register={register} />
       ))}
       {selects?.map((s, i) => (
-        <div key={i} className={styles.form__item}>
-          <label>{s.label}</label>
-          <select {...register(s.label)} className={styles.form__item}>
-            {s.choices.map((c, j) => (
-              <option key={j} value={c.key}>
-                {c.value}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FormSelectField item={s} key={i} register={register} />
       ))}
       <div className={styles.form__btns}>
         <button
