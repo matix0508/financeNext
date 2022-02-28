@@ -1,7 +1,7 @@
 import { Category, Expense, Merchant } from "@prisma/client";
 import React, { useState } from "react";
 import { Table } from "../../components/expenses/Table";
-import { useFetch } from "../../services/useFetch";
+import { useFetch } from "usehooks-ts";
 import { IExpense } from "../../types/IExpense";
 type IExpenses = (Expense & { category?: Category; merchant?: Merchant })[];
 
@@ -41,10 +41,10 @@ export const Expenses = () => {
   //     date: "today"
   //   },
   // ]
-  const expensesPromise = useFetch<IExpenses>("/api/expenses").then((value) =>
-    setExpenses(value)
-  );
-  const data: IExpense[] = expenses.map((item) => ({
+  const {data, error} = useFetch<IExpenses>("/api/expenses")
+  if (error) return <p>There is an error</p>
+  if (!data) return <p>Loading...</p>
+  const newData: IExpense[] = data.map((item) => ({
     name: item.name,
     category: item.category?.name,
     cost: item.cost,
@@ -52,7 +52,7 @@ export const Expenses = () => {
     merchant: item.merchant?.name,
     date: item.date
   }));
-  return <Table rawData={data} />;
+  return <Table rawData={newData} />;
 };
 
 export default Expenses;
