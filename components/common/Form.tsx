@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "../../styles/Form.module.scss";
 import { IField } from "../../types/IField";
 import { ISelect } from "../../types/ISelect";
@@ -11,23 +11,28 @@ interface IForm {
   selects?: ISelect[];
   btnText: string;
   back: string;
+  onSubmit: (data: any) => void;
 }
 
-export const Form: FC<IForm> = ({ title, fields, selects, btnText, back }) => {
+export const Form: FC<IForm> = ({
+  title,
+  fields,
+  selects,
+  btnText,
+  back,
+  onSubmit,
+}) => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
-    fetch("/api/categories/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...data, userId: 1 } ), // TODO: user for tests
-    })
-      .then((response) => response.json())
-      .then((item) => console.log(item));
-    router.push(back);
-  };
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    const defaults = fields.filter((f) => !!f.default);
+    defaults.forEach((item) => {
+      setValue(item.label, item.default);
+    });
+    console.log(defaults);
+  });
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.form__title}>{title}</div>
