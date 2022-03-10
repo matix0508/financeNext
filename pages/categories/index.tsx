@@ -1,5 +1,5 @@
 import { Category } from "@prisma/client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useQuery } from "react-query";
 import { CatList } from "../../components/categories/CatList";
 import { ReadCategory } from "../../components/categories/ReadCategory";

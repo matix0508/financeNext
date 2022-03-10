@@ -17,7 +17,8 @@ export const FormField:FC<IFormField> = ({register, item}) => {
       type={item.inputType}
       placeholder={item.placeholder}
       autoFocus={item.autofocus}
-      {...register(item.label, { required: true })}
+      step={item.step}
+      {...register(!!item.name ? item.name : item.label, { required: true })}
     />
   </div>
   );

@@ -38,7 +38,7 @@ model Expense {
   id          Int       @id @default(autoincrement())
   name        String
   category    Category  @relation(fields: [categoryId], references: [id])
-  categoryId  Int       @unique
+  categoryId  Int       
   cost        Float
   description String
   merchant    Merchant? @relation(fields: [merchantId], references: [id])
