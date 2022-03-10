@@ -7,41 +7,6 @@ import { useQuery } from "react-query";
 type IExpenses = (Expense & { category?: Category; merchant?: Merchant })[];
 
 export const Expenses = () => {
-  const [expenses, setExpenses] = useState<IExpenses>([]);
-  // const data: IExpense[] = [
-  //   {
-  //     name: "Biedra",
-  //     category: "Groceries",
-  //     cost: 54,
-  //     description: "",
-  //     merchant: "Biedronka",
-  //     date: "today"
-  //   },
-  //   {
-  //     name: "Biedra",
-  //     category: "Groceries",
-  //     cost: 54,
-  //     description: "",
-  //     merchant: "Biedronka",
-  //     date: "today"
-  //   },
-  //   {
-  //     name: "Biedra",
-  //     category: "Groceries",
-  //     cost: 54,
-  //     description: "",
-  //     merchant: "Biedronka",
-  //     date: "today"
-  //   },
-  //   {
-  //     name: "Biedra",
-  //     category: "Groceries",
-  //     cost: 54,
-  //     description: "",
-  //     merchant: "Biedronka",
-  //     date: "today"
-  //   },
-  // ]
   const { isLoading, error, data } = useQuery<IExpenses, Error>(
     "expenses",
     () => fetch("/api/expenses").then((res) => res.json())
