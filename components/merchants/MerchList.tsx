@@ -6,19 +6,18 @@ import { useRouter } from "next/router";
 import { Merchant } from "@prisma/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { queryClient } from "../../pages/_app";
 
 interface IMerchList {
   items: Merchant[];
   active: Merchant | undefined;
   setActive: (item: Merchant) => void;
-  onChange: () => void;
 }
 
 export const MerchList: FC<IMerchList> = ({
   items,
   active,
   setActive,
-  onChange,
 }) => {
   const router = useRouter();
 
@@ -27,7 +26,7 @@ export const MerchList: FC<IMerchList> = ({
       method: "DELETE",
     });
     console.log(await result.json());
-    onChange();
+    queryClient.refetchQueries("merchants")
   };
 
   if (!items) {

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Table } from "../../components/expenses/Table";
 import { useFetch } from "usehooks-ts";
 import { IExpense } from "../../types/IExpense";
+import { useQuery } from "react-query";
 type IExpenses = (Expense & { category?: Category; merchant?: Merchant })[];
 
 export const Expenses = () => {
@@ -41,16 +42,21 @@ export const Expenses = () => {
   //     date: "today"
   //   },
   // ]
-  const {data, error} = useFetch<IExpenses>("/api/expenses")
-  if (error) return <p>There is an error</p>
-  if (!data) return <p>Loading...</p>
+  const { isLoading, error, data } = useQuery<IExpenses, Error>(
+    "expenses",
+    () => fetch("/api/expenses").then((res) => res.json())
+  );
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+  if (!data || data.length === 0) return "No data";
   const newData: IExpense[] = data.map((item) => ({
     name: item.name,
     category: item.category?.name,
     cost: item.cost,
     description: item.description,
     merchant: item.merchant?.name,
-    date: item.date
+    date: item.date,
   }));
   return <Table rawData={newData} />;
 };

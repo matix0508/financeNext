@@ -6,19 +6,19 @@ import { useRouter } from "next/router";
 import { Category } from "@prisma/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { QueryClient, useMutation } from "react-query";
+import { queryClient } from "../../pages/_app";
 
 interface ICatList {
   items: Category[];
   active: Category | undefined;
   setActive: (item: Category) => void;
-  onChange: () => void;
 }
 
 export const CatList: FC<ICatList> = ({
   items,
   active,
-  setActive,
-  onChange,
+  setActive
 }) => {
   const router = useRouter();
 
@@ -26,8 +26,8 @@ export const CatList: FC<ICatList> = ({
     const result = await fetch(`/api/categories/${category.id}`, {
       method: "DELETE",
     });
-    console.log(await result.json());
-    onChange();
+    queryClient.refetchQueries(["categories"])
+
   };
 
   if (!items) {

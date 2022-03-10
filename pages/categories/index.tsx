@@ -1,32 +1,26 @@
 import { Category } from "@prisma/client";
 import React, { FC, useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { CatList } from "../../components/categories/CatList";
 import { ReadCategory } from "../../components/categories/ReadCategory";
-import styles from '../../styles/Categories/Categories.module.scss';
+import styles from "../../styles/Categories/Categories.module.scss";
 
 export const Categories: FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const fetchCategories = async () => {
-    const response = await fetch("/api/categories");
-    const data: Category[] = await response.json();
-    setCategories(data);
-  };
-  useEffect(() => {
-    let timer1 = setTimeout(() => fetchCategories(), 100);
-    return () => {
-      clearTimeout(timer1);
-    };
-  }, []);
+  const { isLoading, error, data } = useQuery<Category[], Error>(
+    "categories",
+    () => fetch("/api/categories").then((res) => res.json())
+  );
   const [active, setActive] = useState<Category>();
+  if (isLoading) return <>Loading...</>;
+
+  if (error) return <>An error has occurred: {error.message}</>;
+  if (!data) return <>No data</>;
   return (
     <div className={styles.categories}>
       <CatList
-        items={categories}
+        items={data}
         active={active}
         setActive={setActive}
-        onChange={() => {
-          fetchCategories();
-        }}
       />
       <ReadCategory category={active} />
     </div>

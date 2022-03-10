@@ -3,6 +3,7 @@ import { Form } from "../../components/common/Form";
 import { IField } from "../../types/IField";
 import styles from "../../styles/Merchants.module.scss";
 import { useRouter } from "next/router";
+import { queryClient } from "../_app";
 
 const Create: FC = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const Create: FC = () => {
     })
       .then((response) => response.json())
       .then((item) => console.log(item));
+    queryClient.refetchQueries("merchants");
     router.push("/merchants");
   };
   return (
