@@ -5,6 +5,9 @@ import { IExpense } from "../../types/IExpense";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { ReadExpense } from "../../components/expenses/ReadExpense";
+import { AddButton } from "../../components/common/AddButton";
+import styles from "../../styles/Expenses.module.scss";
+
 type IExpenses = (Expense & {
   category?: Category | undefined;
   merchant?: Merchant | undefined;
@@ -38,10 +41,16 @@ export const Expenses = () => {
     self: item,
   }));
   return (
-    <div>
+    <div className={styles.expenses}>
+      <div className={styles.expenses__table}>
       <Table rawData={newData} onClick={setCurrent} />
-      <button onClick={() => router.push("/expenses/create")}>Add</button>
+      <AddButton onClick={() => router.push("/expenses/create")}>Add</AddButton>
+      </div>
+
+      <div className={styles.expenses__expense}>
       <ReadExpense expense={current} />
+      </div>
+      
     </div>
   );
 };

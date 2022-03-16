@@ -27,9 +27,10 @@ export const ReadExpense: FC<IReadExpense> = ({ expense }) => {
       />
       <h3 className={styles.read__name}>{expense.name}</h3>
       <h6 className={styles.read__id}>id: {expense.id}</h6>
-      <p className={styles.read__last}>Spent last month: 0zł</p>
-      <p className={styles.read__current}>Spent this month: 0zł</p>
+      <h6>{expense.cost}zł</h6>
+      <h6>{typeof expense.merchant === "string" ? expense.merchant : expense.merchant?.name}</h6>
+
+      <p>{expense.description}</p>
     </div>
   );
 };
-
