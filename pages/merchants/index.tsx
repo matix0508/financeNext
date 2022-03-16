@@ -1,32 +1,23 @@
 import { Merchant } from "@prisma/client";
 import React, { FC, useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { MerchList } from "../../components/merchants/MerchList";
 import { ReadMerchant } from "../../components/merchants/ReadMerchant";
 import styles from '../../styles/Merchants.module.scss';
 
 export const Merchants: FC = () => {
-  const [merchant, setMerchants] = useState<Merchant[]>([]);
-  const fetchMerchants = async () => {
-    const response = await fetch("/api/merchants");
-    const data: Merchant[] = await response.json();
-    setMerchants(data);
-  };
-  useEffect(() => {
-    let timer1 = setTimeout(() => fetchMerchants(), 100);
-    return () => {
-      clearTimeout(timer1);
-    };
-  }, []);
+  const {isLoading, error, data} = useQuery<Merchant[], Error>("merchants", () => fetch("/api/merchants").then(res => res.json()))
   const [active, setActive] = useState<Merchant>();
+  if (isLoading) return <>Loading...</>;
+
+  if (error) return <>An error has occurred: {error.message}</>;
+  if (!data) return <>No data</>;
   return (
     <div className={styles.merchants}>
       <MerchList
-        items={merchant}
+        items={data}
         active={active}
         setActive={setActive}
-        onChange={() => {
-          fetchMerchants();
-        }}
       />
       <ReadMerchant merchant={active} />
     </div>

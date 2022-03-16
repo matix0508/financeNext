@@ -1,12 +1,14 @@
 import { Expense } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma/db";
+import { queryClient } from "../../_app";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Expense | null>
 ) {
   const { eid } = req.query;
+
 
   switch (req.method) {
     case "GET":

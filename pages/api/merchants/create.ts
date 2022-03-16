@@ -1,6 +1,7 @@
 import { Merchant } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma/db";
+import { queryClient } from "../../_app";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,5 +14,6 @@ export default async function handler(
       user: {connect: {id: userId}}
     },
   });
+  queryClient.refetchQueries("expenses")
   res.json(result);
 }

@@ -1,0 +1,13 @@
+.expenses {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    &__table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__expense {
+        display: flex;
+        justify-content: center;
+    }
+}

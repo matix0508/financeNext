@@ -1,27 +1,31 @@
 import { Category } from "@prisma/client";
 import { useRouter } from "next/router";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
+import { useQuery } from "react-query";
 import { Form } from "../../../components/common/Form";
 import { IField } from "../../../types/IField";
-
+import { queryClient } from "../../_app";
 
 export const CategoryEdit: FC = () => {
-    const router = useRouter();
-    const {cid} = router.query
-    const [category, setCategory] = useState<Category>();
-    const fetchCategory = async () => {
-        const response = await fetch(`/api/categories/${cid}`);
-        const data: Category = await response.json();
-        setCategory(data);
-      };
-    useEffect(() => {
-        fetchCategory();
-    }, [])
+  const router = useRouter();
+  const { cid } = router.query;
+  // const [category, setCategory] = useState<Category>();
+  // const fetchCategory = async () => {
+  //     const response = await fetch(`/api/categories/${cid}`);
+  //     const data: Category = await response.json();
+  //     setCategory(data);
+  //   };
+  // useEffect(() => {
+  //     fetchCategory();
+  // }, [])
+  const { isLoading, error, data } = useQuery<Category, Error>("category", () =>
+    fetch(`/api/categories/${cid}`).then((res) => res.json())
+  );
 
-    if (!category) {
-        return <></>
-    }
+  if (isLoading) return <>Loading...</>;
 
+  if (error) return <>An error has occurred: {error.message}</>;
+  if (!data) return <>No data</>;
 
   const fields: IField[] = [
     {
@@ -29,20 +33,21 @@ export const CategoryEdit: FC = () => {
       inputType: "text",
       placeholder: "Category",
       autofocus: true,
-      default: category.name
+      default: data.name,
     },
   ];
 
-  const onSubmit = (data: any) => {
-    fetch(`/api/categories/${category.id}`, {
+  const onSubmit = (content: any) => {
+    fetch(`/api/categories/${data.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data, userId: 1 }), // TODO: user for tests
+      body: JSON.stringify({ ...content, userId: 1 }), // TODO: user for tests
     })
       .then((response) => response.json())
       .then((item) => console.log(item));
+    queryClient.refetchQueries("categories");
     router.push("/categories");
   };
   return (
@@ -55,6 +60,5 @@ export const CategoryEdit: FC = () => {
     />
   );
 };
-
 
 export default CategoryEdit;

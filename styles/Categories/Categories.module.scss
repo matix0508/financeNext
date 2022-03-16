@@ -1,44 +1,36 @@
 .categories {
-  display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
-
-}
-
-.create {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-  margin-top: 5rem;
-  padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
 }
 
 @media only screen and (max-width: $large) {
-  .categories {
-    grid-template-columns: 1fr 4fr;
-  }
+    .categories {
+        grid-template-columns: 1fr 4fr;
+    }
 }
+
 @media only screen and (max-width: $big) {
-  .categories {
-    grid-template-columns: 1fr 2fr;
-  }
+    .categories {
+        grid-template-columns: 1fr 2fr;
+    }
 }
+
 @media only screen and (max-width: $medium) {
-  .categories {
-    grid-template-columns: 1fr;
-
-    &__list {
-      width: 60%;
-      justify-self: center;
+    .categories {
+        grid-template-columns: 1fr;
+        &__list {
+            width: 60%;
+            justify-self: center;
+        }
     }
-  }
 }
-@media only screen and (max-width: $small) {
-  .categories {
-    // grid-template-columns: 1fr;
 
-    &__list {
-      width: 90%;
-      justify-self: center;
+@media only screen and (max-width: $small) {
+    .categories {
+        // grid-template-columns: 1fr;
+        &__list {
+            width: 90%;
+            justify-self: center;
+        }
     }
-  }
 }

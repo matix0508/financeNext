@@ -7,5 +7,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Category[]>
 ) {
-  res.json(await prisma.category.findMany());
+
+  const users = await prisma.user.findMany();
+
+  const getUser = (userId: number) => users.filter(user => user.id === userId).shift()
+
+  const data = await prisma.category.findMany();
+  const response = data.map((item) => ({
+    ...item,
+    user: getUser(item.userId)
+  }));
+  res.json(response);
 }

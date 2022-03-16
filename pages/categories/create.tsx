@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { Form } from "../../components/common/Form";
 import { IField } from "../../types/IField";
-import styles from "../../styles/Categories/Categories.module.scss";
+import styles from "../../styles/Common.module.scss";
 import { useRouter } from "next/router";
+import { queryClient } from "../_app";
 
 const Create: FC = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const Create: FC = () => {
     })
       .then((response) => response.json())
       .then((item) => console.log(item));
+    queryClient.refetchQueries("categories");
     router.push("/categories");
   };
   return (
