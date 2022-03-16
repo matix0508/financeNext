@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { ReadExpense } from "../../components/expenses/ReadExpense";
 import { AddButton } from "../../components/common/AddButton";
 import styles from "../../styles/Expenses.module.scss";
+import { queryClient } from "../_app";
 
 type IExpenses = (Expense & {
   category?: Category | undefined;
@@ -14,6 +15,17 @@ type IExpenses = (Expense & {
 })[];
 
 export const Expenses = () => {
+  const handleDelete = async (expense: IExpense | undefined) => {
+    if (expense === undefined) {
+      return
+    }
+    const result = await fetch(`/api/expenses/${expense.id}`, {
+      method: "DELETE",
+    });
+    console.log(await result.json());
+    queryClient.refetchQueries("expenses");
+    setCurrent(undefined)
+  };
   const [current, setCurrent] = useState<IExpense>();
   const router = useRouter();
   const { isLoading, error, data } = useQuery<IExpenses, Error>(
@@ -48,7 +60,7 @@ export const Expenses = () => {
       </div>
 
       <div className={styles.expenses__expense}>
-      <ReadExpense expense={current} />
+      <ReadExpense expense={current} onDelete={() => handleDelete(current)} />
       </div>
       
     </div>

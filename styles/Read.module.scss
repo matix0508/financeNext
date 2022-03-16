@@ -8,18 +8,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
-    &__edit {
-        margin: 0.3rem;
-        padding: 0.5rem;
-        align-self: flex-end;
-        cursor: pointer;
-        @include transition;
-        border-radius: 1rem;
-        color: $secondary;
-        &:hover {
-            color: $onSecondary;
-            background-color: $secondary;
+    justify-content: center;
+    &__icons {
+        &__edit {
+            margin: 0.3rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            @include transition;
+            border-radius: 1rem;
+            color: $secondary;
+            &:hover {
+                color: $onSecondary;
+                background-color: $secondary;
+            }
+        }
+        &__delete {
+            margin: 0.3rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            @include transition;
+            border-radius: 1rem;
+            color: $secondary;
+            &:hover {
+                color: red;
+            }
         }
     }
     &__name {
