@@ -1,37 +1,45 @@
 .read {
     margin: 1rem;
     margin-top: 5rem;
-    padding: 1rem;
+    padding: 3rem;
     @include shadow;
     width: fit-content;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
-
-    &__edit {
-        margin: 0.3rem;
-        padding: 0.5rem;
-        align-self: flex-end;
-        cursor: pointer;
-        @include transition;
-        border-radius: 1rem;
-        color: $secondary;
-
-        &:hover {
-            color: $onSecondary;
-            background-color: $secondary;
-
+    justify-content: center;
+    &__icons {
+        &__edit {
+            margin: 0.3rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            @include transition;
+            border-radius: 1rem;
+            color: $secondary;
+            &:hover {
+                color: $onSecondary;
+                background-color: $secondary;
+            }
+        }
+        &__delete {
+            margin: 0.3rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            @include transition;
+            border-radius: 1rem;
+            color: $secondary;
+            &:hover {
+                color: red;
+            }
         }
     }
-
     &__name {
         padding: 1rem;
         margin: 1rem;
         margin-bottom: 0;
         padding-bottom: 0;
     }
-
     &__id {
         font-weight: normal;
         margin: 0.5rem;
@@ -39,13 +47,11 @@
         margin-top: 0.2rem;
         padding-top: 0;
     }
-
-    &__last, &__current {
+    &__last,
+    &__current {
         margin: 1rem;
         padding: 1rem;
         @include shadow;
         background-color: lighten($secondary, 40);
     }
-    
-
 }
