@@ -5,6 +5,7 @@ import { MerchList } from "../../components/merchants/MerchList";
 import { ReadMerchant } from "../../components/merchants/ReadMerchant";
 import styles from '../../styles/Merchants.module.scss';
 
+
 export const Merchants: FC = () => {
   const {isLoading, error, data} = useQuery<Merchant[], Error>("merchants", () => fetch("/api/merchants").then(res => res.json()))
   const [active, setActive] = useState<Merchant>();
