@@ -1,0 +1,14 @@
+.home {
+    &__chart {
+        padding: 2rem;
+        margin: 3rem;
+        @include shadow;
+        border-radius: 1rem;
+        width: fit-content;
+        @include transition;
+        &:hover {
+            border-radius: 2rem;
+            background-color: $primary;
+        }
+    }
+}

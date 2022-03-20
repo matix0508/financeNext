@@ -2,9 +2,31 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../prisma/db";
 
+interface ICategoryApi {
+  average: number;
+  id: number;
+  name: string;
+  userId: number;
+}
+
+interface IMerchantApi {
+  average: number;
+  id: number;
+  name: string;
+  userId: number;
+}
+
+export interface ISummaryResponse {
+  categories: ICategoryApi[];
+  merchants: IMerchantApi[];
+  totalExpenses: number;
+  averageExpenses: number;
+  months: number[];
+}
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<ISummaryResponse>
 ) {
   const { year } = req.query;
   const startDate = new Date(Number(year), 0, 1);
@@ -19,7 +41,6 @@ export default async function handler(
       date: {
         lt: endDate,
         gte: startDate,
-        
       },
     },
   });
@@ -35,12 +56,16 @@ export default async function handler(
   let merchantCount = merchant.map((merch) => {
     return { ...merch, average: 0 };
   });
+  const months = new Array(finishedMonths).fill(0);
   expenses.forEach((item) => {
     categoriesCount[catIds.findIndex((i) => i === item.categoryId)].average +=
       item.cost;
     merchantCount[merchIds.findIndex((i) => i === item.merchantId)].average +=
       item.cost;
     total += item.cost;
+    if (item.date.getMonth() < finishedMonths) {
+      months[item.date.getMonth()] += item.cost
+    }
   });
   categoriesCount = categoriesCount.map((item) => {
     item.average = finishedMonths === 0 ? 0 : item.average / finishedMonths;
@@ -56,6 +81,6 @@ export default async function handler(
     merchants: merchantCount,
     totalExpenses: total,
     averageExpenses: finishedMonths === 0 ? 0 : total / finishedMonths,
-    months: finishedMonths
+    months: months
   });
 }
