@@ -7,6 +7,7 @@ import { queryClient } from "../_app";
 import { ISelect } from "../../types/ISelect";
 import { useQuery } from "react-query";
 import { Category, Merchant } from "@prisma/client";
+import { CreateStyle } from "../../components/common/CreateStyle/CreateStyle";
 
 const Create: FC = () => {
   const router = useRouter();
@@ -88,7 +89,7 @@ const Create: FC = () => {
     router.push("/expenses");
   };
   return (
-    <div className={styles.create}>
+    <CreateStyle>
       <Form
         title="New Expense"
         fields={fields}
@@ -97,7 +98,7 @@ const Create: FC = () => {
         onSubmit={onSubmit}
         back="/expenses"
       />
-    </div>
+    </CreateStyle>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Form } from "../../components/common/Form/Form";
 import { IField } from "../../types/IField";
-import styles from "../../styles/Common.module.scss";
 import { useRouter } from "next/router";
 import { queryClient } from "../_app";
+import { CreateStyle } from "../../components/common/CreateStyle/CreateStyle";
 
 const Create: FC = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const Create: FC = () => {
     router.push("/categories");
   };
   return (
-    <div className={styles.create}>
+    <CreateStyle>
       <Form
         title="New Category"
         fields={fields}
@@ -37,7 +37,7 @@ const Create: FC = () => {
         onSubmit={onSubmit}
         back="/categories"
       />
-    </div>
+    </CreateStyle>
   );
 };
 
