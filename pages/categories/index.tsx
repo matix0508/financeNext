@@ -1,9 +1,9 @@
 import { Category } from "@prisma/client";
 import React, { FC, useState } from "react";
 import { useQuery } from "react-query";
-import { CatList } from "../../components/categories/CatList";
+import { List } from "../../components/common/List/List";
 import { ReadCategory } from "../../components/categories/ReadCategory";
-import styles from "../../styles/Categories/Categories.module.scss";
+import styles from "../../styles/Categories.module.scss";
 
 export const Categories: FC = () => {
   const { isLoading, error, data } = useQuery<Category[], Error>(
@@ -17,10 +17,11 @@ export const Categories: FC = () => {
   if (!data) return <>No data</>;
   return (
     <div className={styles.categories}>
-      <CatList
+      <List
         items={data}
         active={active}
         setActive={setActive}
+        itemsName="categories"
       />
       <ReadCategory category={active} />
     </div>

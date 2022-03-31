@@ -1,0 +1,15 @@
+.ReadExpense {
+    &__name {
+        padding: 1rem;
+        margin: 1rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    &__id {
+        font-weight: normal;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        margin-top: 0.2rem;
+        padding-top: 0;
+    }
+}

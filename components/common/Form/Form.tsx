@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { FC, useEffect } from "react";
-import styles from "../../styles/Form.module.scss";
-import { IField } from "../../types/IField";
-import { ISelect } from "../../types/ISelect";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { FormSelectField } from "./FormSelectField";
-import { FormField } from "./FormField";
+import styles from "./Form.module.scss";
+import { IField } from "../../../types/IField";
+import { ISelect } from "../../../types/ISelect";
+import { useForm } from "react-hook-form";
+import { FormSelectField } from "./FormItem/FormSelectField";
+import {FormField} from "./FormItem/FormField";
 
 interface IForm {
   title: string;
@@ -36,7 +36,7 @@ export const Form: FC<IForm> = ({
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.Form}>
       <div className={styles.form__title}>{title}</div>
       {fields.map((f, i) => (
         <FormField key={i} item={f} register={register} />
@@ -44,15 +44,15 @@ export const Form: FC<IForm> = ({
       {selects?.map((s, i) => (
         <FormSelectField item={s} key={i} register={register} />
       ))}
-      <div className={styles.form__btns}>
+      <div className={styles.Form__btns}>
         <button
           type="reset"
-          className={styles.form__btns__cancel}
+          className={styles.Form__btns__cancel}
           onClick={() => router.push(back)}
         >
           Cancel
         </button>
-        <button className={styles.form__btns__submit} type="submit">
+        <button className={styles.Form__btns__submit} type="submit">
           {btnText}
         </button>
       </div>

@@ -1,0 +1,30 @@
+.ListItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__label {
+        width: 100%;
+        margin: 0.5rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: lighten($secondary, 10%);
+        text-align: center;
+        transition: all 0.6s ease-in;
+        &:hover {
+            cursor: pointer;
+            @include shadow;
+        }
+    }
+    &__trash {
+        padding: 0.5rem;
+        padding-left: 0;
+        @include transition;
+        &:hover {
+            color: red;
+        }
+    }
+    &_active {
+        background-color: saturate($secondary, 20);
+        font-weight: bold;
+    }
+}

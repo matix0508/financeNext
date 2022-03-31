@@ -1,0 +1,17 @@
+.List {
+    background-color: $secondary;
+    color: $onSecondary;
+    border-radius: 1rem;
+    margin: 3rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    @include shadow;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

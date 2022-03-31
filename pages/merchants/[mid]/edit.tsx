@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
-import { Form } from "../../../components/common/Form";
+import { Form } from "../../../components/common/Form/Form";
 import { IField } from "../../../types/IField";
 import { Merchant } from "@prisma/client";
 

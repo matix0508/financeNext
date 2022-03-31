@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import styles from '../../styles/Form.module.scss';
-import { IField } from "../../types/IField";
+import { IField } from "../../../../types/IField";
+import { FormItem } from "./FormItem";
 
 interface IFormField {
     register: UseFormRegister<FieldValues> ,
@@ -11,7 +11,7 @@ interface IFormField {
 
 export const FormField:FC<IFormField> = ({register, item}) => {
   return (
-    <div className={styles.form__item}>
+    <FormItem>
     <label>{item.label}</label>
     <input
       type={item.inputType}
@@ -20,6 +20,6 @@ export const FormField:FC<IFormField> = ({register, item}) => {
       step={item.step}
       {...register(!!item.name ? item.name : item.label, { required: true })}
     />
-  </div>
+  </FormItem>
   );
 };
