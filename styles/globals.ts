@@ -1,11 +1,16 @@
+import css from "styled-jsx/css";
+
+import theme from "./theme";
+
+export default css.global`
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: $bg;
-    min-height: 100vh;
+  background: ${theme.colors.background};
+  color: ${theme.colors.onBackground};
+  font-family: ${theme.fontFamily.sansSerif};
+  min-height: 100vh;
 }
 ul {
   list-style: none;
@@ -31,13 +36,13 @@ a {
 }
 
 footer {
-  position: inherit;
+  position: absolute;
   width: 100vw;
   bottom: 0;
   padding: 1rem;
-  background-color: $primary;
-  color: $onPrimary;
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.onPrimary};
   text-align: center;
   @include shadow;
 }
-
+`
