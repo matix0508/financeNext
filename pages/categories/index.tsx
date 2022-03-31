@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { useQuery } from "react-query";
 import { List } from "../../components/common/List/List";
 import { ReadCategory } from "../../components/categories/ReadCategory";
-import styles from "../../styles/Categories/Categories.module.scss";
+import styles from "../../styles/Categories.module.scss";
 
 export const Categories: FC = () => {
   const { isLoading, error, data } = useQuery<Category[], Error>(

@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import styles from "./ItemList.module.scss";
+import styles from "./ListItem.module.scss";
 import classNames from "classnames";
 
 interface IListItem {
@@ -8,6 +8,7 @@ interface IListItem {
 }
 
 export const ListItem: FC<IListItem> = ({ children, active, onClick }) => {
+  const stl = active ? styles.ListItem_active : ""
 
-  return <li onClick={onClick} className={classNames([styles.List__item__label, {active: active}])}>{children}</li>;
+  return <li onClick={onClick} className={classNames([styles.ListItem__label, stl])}>{children}</li>;
 };

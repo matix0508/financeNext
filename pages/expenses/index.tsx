@@ -1,6 +1,6 @@
 import { Category, Expense, Merchant } from "@prisma/client";
 import React, { useState } from "react";
-import { Table } from "../../components/expenses/Table";
+import { Table } from "../../components/expenses/Table/Table";
 import { IExpense } from "../../types/IExpense";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";

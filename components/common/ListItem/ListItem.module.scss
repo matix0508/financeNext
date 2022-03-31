@@ -23,9 +23,8 @@
             color: red;
         }
     }
-}
-
-active {
-    background-color: saturate($secondary, 20);
-    font-weight: bold;
+    &_active {
+        background-color: saturate($secondary, 20);
+        font-weight: bold;
+    }
 }

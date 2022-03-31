@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React, { FC } from "react";
 import { useTable } from "react-table";
-import { IExpense } from "../../types/IExpense";
+import { IExpense } from "../../../types/IExpense";
 
-import styles from "../../styles/Table.module.scss";
-import { queryClient } from "../../pages/_app";
+import styles from "./Table.module.scss";
+import { queryClient } from "../../../pages/_app";
 
 interface ITable {
   rawData: IExpense[];

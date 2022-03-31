@@ -29,7 +29,7 @@ export const List: FC<IList> = ({ items, active, setActive, itemsName}) => {
     return <></>;
   }
   return (
-    <ul className={styles.itemsList}>
+    <ul className={styles.List}>
       {items.map((item, i) => (
         <div key={i} className={styles.itemsList__item}>
           <ListItem onClick={() => setActive(item)} active={item === active}>

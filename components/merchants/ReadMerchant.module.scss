@@ -1,4 +1,4 @@
-.ReadExpense {
+.ReadMerchant {
     &__name {
         padding: 1rem;
         margin: 1rem;
@@ -11,5 +11,12 @@
         padding: 0.5rem;
         margin-top: 0.2rem;
         padding-top: 0;
+    }
+    &__last,
+    &__current {
+        margin: 1rem;
+        padding: 1rem;
+        @include shadow;
+        background-color: lighten($secondary, 40);
     }
 }
