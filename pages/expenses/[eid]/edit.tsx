@@ -2,7 +2,7 @@ import { Category, Expense, Merchant } from "@prisma/client";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useQuery } from "react-query";
-import { Form } from "../../../components/common/Form";
+import { Form } from "../../../components/common/Form/Form";
 import { IField } from "../../../types/IField";
 import { ISelect } from "../../../types/ISelect";
 import { queryClient } from "../../_app";

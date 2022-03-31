@@ -1,7 +1,7 @@
 import { Merchant } from "@prisma/client";
 import React, { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { MerchList } from "../../components/merchants/MerchList";
+import { List } from "././../../components/common/List/List";
 import { ReadMerchant } from "../../components/merchants/ReadMerchant";
 import styles from '../../styles/Merchants.module.scss';
 
@@ -15,10 +15,11 @@ export const Merchants: FC = () => {
   if (!data) return <>No data</>;
   return (
     <div className={styles.merchants}>
-      <MerchList
+      <List
         items={data}
         active={active}
         setActive={setActive}
+        itemsName="merchants"
       />
       <ReadMerchant merchant={active} />
     </div>

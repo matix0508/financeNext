@@ -1,4 +1,4 @@
-.add_btn {
+.AddButton {
     background-color: $primary;
     color: $onPrimary;
     width: 80%;
@@ -24,12 +24,4 @@
             content: "+";
         }
     }
-}
-
-.create {
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-    margin-top: 5rem;
-    padding: 1rem;
 }

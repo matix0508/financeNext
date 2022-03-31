@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import styles from "../../styles/Form.module.scss";
-import { ISelect } from "../../types/ISelect";
+import { ISelect } from "../../../../types/ISelect";
+import { FormItem } from "./FormItem";
 
 interface IFormSelectField {
   register: UseFormRegister<FieldValues>;
@@ -10,7 +11,7 @@ interface IFormSelectField {
 
 export const FormSelectField: FC<IFormSelectField> = ({ register, item }) => {
   return (
-    <div className={styles.form__item}>
+    <FormItem>
       <label>{item.label}</label>
       <select
         {...register(!!item.name ? item.name : item.label)}
@@ -22,6 +23,6 @@ export const FormSelectField: FC<IFormSelectField> = ({ register, item }) => {
           </option>
         ))}
       </select>
-    </div>
+    </FormItem>
   );
 };

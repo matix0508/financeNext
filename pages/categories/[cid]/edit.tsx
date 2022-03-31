@@ -2,7 +2,7 @@ import { Category } from "@prisma/client";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useQuery } from "react-query";
-import { Form } from "../../../components/common/Form";
+import { Form } from "../../../components/common/Form/Form";
 import { IField } from "../../../types/IField";
 import { queryClient } from "../../_app";
 

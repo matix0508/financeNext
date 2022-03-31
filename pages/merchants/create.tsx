@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Form } from "../../components/common/Form";
+import { Form } from "../../components/common/Form/Form";
 import { IField } from "../../types/IField";
 import styles from "../../styles/Merchants.module.scss";
 import { useRouter } from "next/router";

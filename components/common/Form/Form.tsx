@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { FC, useEffect } from "react";
 import styles from "../../styles/Form.module.scss";
-import { IField } from "../../types/IField";
-import { ISelect } from "../../types/ISelect";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { FormSelectField } from "./FormSelectField";
-import { FormField } from "./FormField";
+import { IField } from "../../../types/IField";
+import { ISelect } from "../../../types/ISelect";
+import { useForm } from "react-hook-form";
+import { FormSelectField } from "./FormItem/FormSelectField";
+import {FormField} from "./FormItem/FormField";
 
 interface IForm {
   title: string;

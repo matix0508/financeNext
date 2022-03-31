@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "../../styles/Common.module.scss";
+import styles from "./AddButton.module.scss";
 
 interface IAddButton {
   onClick: ()=> void
@@ -7,7 +7,7 @@ interface IAddButton {
 
 export const AddButton: FC<IAddButton> = ({ children, onClick }) => {
   return (
-    <div onClick={onClick} className={styles.add_btn}>
+    <div onClick={onClick} className={styles.AddButton}>
       <span>{children}</span>
     </div>
   );

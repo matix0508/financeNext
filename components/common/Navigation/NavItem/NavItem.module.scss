@@ -1,0 +1,17 @@
+.NavItem {
+    padding: 1rem;
+    border-radius: 2rem;
+    margin: 1rem;
+    transition: all 0.6s ease-in;
+    cursor: pointer;
+    &:hover {
+        // background-color: $secondary;
+        // color: $onSecondary;
+        @include shadow;
+    }
+}
+
+.active {
+    color: saturate($secondary, 30);
+    font-weight: bold;
+}

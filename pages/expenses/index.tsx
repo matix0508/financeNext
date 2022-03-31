@@ -4,8 +4,8 @@ import { Table } from "../../components/expenses/Table";
 import { IExpense } from "../../types/IExpense";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
-import { ReadExpense } from "../../components/expenses/ReadExpense";
-import { AddButton } from "../../components/common/AddButton";
+import { ReadExpense } from "../../components/expenses/ReadExpense/ReadExpense";
+import { AddButton } from "../../components/common/AddButton/AddButton";
 import styles from "../../styles/Expenses.module.scss";
 import { queryClient } from "../_app";
 
