@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.scss";
 import { MyLineChart } from "../components/common/MyLineChart";
 import { useQuery } from "react-query";
 import { ISummaryResponse } from "./api/summary/[year]";
+import { signIn, useSession } from "next-auth/react";
 
 // const data = [
 //   { name: "Page A", height: 400 },
@@ -36,16 +37,25 @@ const Home: NextPage = () => {
   } = useQuery<ISummaryResponse, Error>("summary", () =>
     fetch("/api/summary/2021").then((res) => res.json())
   );
+  const { data: session } = useSession();
+  if (!session) {
+    return (
+      <>
+        Not signed in <br />
+        <button onClick={() => signIn()}>Sign In</button>
+      </>
+    );
+  }
   if (isLoading) return <>Loading...</>;
 
   if (error) return <>An error has occurred: {error.message}</>;
   if (!rawData) return <>No data</>;
-  console.log(rawData)
+  console.log(rawData);
   const data = rawData.months.map((item, i) => ({
     name: monthNames[i],
     height: item,
   }));
-  console.log(data)
+  console.log(data);
   return (
     <div className={styles.container}>
       <Head>
